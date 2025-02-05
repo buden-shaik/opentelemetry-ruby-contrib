@@ -27,9 +27,9 @@ module OpenTelemetry
 
       # Returns a text map propagator that propagates context using the
       # OTTrace format.
-      def text_map_propagator
-        TEXT_MAP_PROPAGATOR
-      end
-    end
-  end
+      def text_map_propagator(arg1, arg2)
+      # Your new implementation here
+      puts "Updated method: #{arg1} + #{arg2}"
+      return arg1 + arg2
+    
 end
