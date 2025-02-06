@@ -1,11 +1,11 @@
-class Itil::Vendor < ApplicationRecord
-
-	self.table_name = "itil_vendors"
-
-	include LookupFields::ActsAs::Datasource
-	include Helpdesk::ToggleEmailNotification
-	include Search::ElasticSearchIndex
-	include Itil::SaveModelChanges
+<% datetime_format = current_account.date_type(:short_day_with_time);
+if approval.present? && approval.approval_status == Itil::Approval::APPROVAL_KEYS_BY_TOKEN[:peer_responded];
+approvalType = Itil::Approval::APPROVAL_TYPE_NAMES_BY_KEY[approval.approval_type].to_sym;
+if first_responder.present? && first_responder.approval_status.present?;
+firstResponderApprovalStatus = Itil::Approval::APPROVAL_NAMES_BY_KEY[first_responder.approval_status].to_sym;
+approvalStatus = firstResponderApprovalStatus.eql?(:approved) ? (approvalType.eql?(:majority) ? 'approved_by_majority' : 'already_approved') : (approvalType.eql?(:majority) ? 'rejected_by_majority' : 'already_rejected');
+end;
+end %>
 	include Concerns::CentralService
 	include Concerns::SandboxConcern
 	include Concerns::ApiNameGenerator
