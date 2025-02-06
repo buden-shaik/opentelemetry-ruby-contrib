@@ -83,19 +83,19 @@ class Itil::Vendor < ApplicationRecord
 		end
   end
 
-	def set_flexifield_form_id
-    	flexifield.form_id = @custom_form.id
-  	end
-
-  	def custom_form
-    	@custom_form ||= account.vendor_form
-  	end
-
-  	def custom_field_aliases
-    	@custom_field_aliases ||= begin
-      		custom_form.custom_fields.map(&:name)
-    	end
-  	end
+: def set_flexifield_form_id
+:   flexifield.form_id = @custom_form.id
+: end
+:
+: def custom_form
+:   @custom_form ||= account.vendor_form
+: end
+:
+: def custom_field_aliases
+:   @custom_field_aliases ||= begin
+:     custom_form.custom_fields.map(&:name)
+:   end
+: end
 
     def custom_fields
       dropdown_field_names = custom_form.custom_dropdown_fields.map { |f| [f.name, f.choices.map { |f| [f.id, f.value] }.to_h] }.to_h
